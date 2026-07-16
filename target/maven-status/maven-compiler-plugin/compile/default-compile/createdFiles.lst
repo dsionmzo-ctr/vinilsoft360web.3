@@ -1,0 +1,5 @@
+com\vinilsoft360\conexion\Conexion.class
+com\vinilsoft360\dao\ClienteDAO.class
+com\vinilsoft360\model\Cliente.class
+com\vinilsoft360\servlet\ClienteServlet.class
+com\vinilsoft360\TestConexion.class
