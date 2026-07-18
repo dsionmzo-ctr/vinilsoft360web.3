@@ -1,31 +1,36 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ include file="menu.jsp" %>
+
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>Vinilsoft360</title>
+
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+
 </head>
+
 <body>
 
-<h2>Registro de Clientes</h2>
+<div class="contenedor">
 
-<form action="ClienteServlet" method="post">
+    <a class="boton" href="listarClientes.jsp">
+        👥 Módulo de Clientes
+    </a>
 
-    Nombre:<br>
-    <input type="text" name="nombre" required>
-    <br><br>
+    <a class="boton" href="listarProductos.jsp">
+        📦 Módulo de Productos
+    </a>
 
-    Teléfono:<br>
-    <input type="text" name="telefono">
-    <br><br>
+</div>
 
-    Dirección:<br>
-    <input type="text" name="direccion">
-    <br><br>
-
-    <input type="submit" value="Guardar Cliente">
-
-</form>
+<%@ include file="footer.jsp" %>
 
 </body>
+
 </html>

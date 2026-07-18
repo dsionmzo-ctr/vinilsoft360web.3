@@ -1,0 +1,251 @@
+/*
+======================================================
+VINILSOFT360
+Hoja de estilos general
+
+Autor:
+Dayson Mazo Villa
+
+SENA ADSO
+======================================================
+*/
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#F5F5F5;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+/*==============================*/
+/* ENCABEZADO */
+/*==============================*/
+
+header{
+
+    background:#0B5394;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+header h1{
+
+    margin:0;
+
+}
+
+header p{
+
+    margin-top:8px;
+
+}
+
+/*==============================*/
+/* MENU */
+/*==============================*/
+
+nav{
+
+    background:#083763;
+
+    padding:15px;
+
+    text-align:center;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    padding:10px 20px;
+
+    margin:10px;
+
+    border-radius:5px;
+
+}
+
+nav a:hover{
+
+    background:white;
+
+    color:#083763;
+
+}
+
+/*==============================*/
+/* TITULOS */
+/*==============================*/
+
+h2{
+
+    color:#0B5394;
+
+    text-align:center;
+
+}
+
+/*==============================*/
+/* TABLAS */
+/*==============================*/
+
+table{
+
+    width:90%;
+
+    margin:auto;
+
+    border-collapse:collapse;
+
+    background:white;
+
+}
+
+th{
+
+    background:#0B5394;
+
+    color:white;
+
+    padding:12px;
+
+}
+
+td{
+
+    padding:10px;
+
+    text-align:center;
+
+}
+
+tr:nth-child(even){
+
+    background:#F0F0F0;
+
+}
+
+/*==============================*/
+/* FORMULARIOS */
+/*==============================*/
+
+form{
+
+    width:500px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0px 0px 8px gray;
+
+}
+
+input[type=text],
+input[type=number]{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:5px;
+
+    margin-bottom:15px;
+
+}
+
+input[type=submit],
+input[type=button]{
+
+    background:#0B5394;
+
+    color:white;
+
+    border:none;
+
+    padding:12px;
+
+    cursor:pointer;
+
+    border-radius:5px;
+
+}
+
+input[type=submit]:hover,
+input[type=button]:hover{
+
+    background:#083763;
+
+}
+
+/*==============================*/
+/* FOOTER */
+/*==============================*/
+
+footer{
+
+    margin-top:40px;
+
+    background:#0B5394;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+}
+/*========================================*/
+/* MENÚ PRINCIPAL */
+/*========================================*/
+
+.contenedor{
+
+    width:500px;
+    margin:40px auto;
+    background:white;
+    padding:40px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+    text-align:center;
+
+}
+
+.boton{
+
+    display:block;
+    width:260px;
+    margin:20px auto;
+    padding:18px;
+    background:#0B5394;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    border-radius:8px;
+    transition:0.3s;
+
+}
+
+.boton:hover{
+
+    background:#3876C7;
+
+}

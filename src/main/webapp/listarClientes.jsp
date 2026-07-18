@@ -2,13 +2,17 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.vinilsoft360.dao.ClienteDAO" %>
 <%@ page import="com.vinilsoft360.model.Cliente" %>
-
+<%@ include file="menu.jsp" %>
 <%
     ClienteDAO dao = new ClienteDAO();
     List<Cliente> lista = dao.listarClientes();
 %>
 
-<!DOCTYPE html>
+<!DOCTYPE html><br><br>
+
+<a href="index.jsp">
+    <input type="button" value="← Volver al menú principal">
+</a>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,10 +20,12 @@
 </head>
 <body>
 
-<h2>Clientes Registrados</h2>
+<h2>Registro de clientes </h2>
 
-<a href="index.jsp">Volver al Registro</a>
 
+<a href="registrarCliente.jsp" class="boton">
+    ➕ Registrar Cliente
+</a>
 <br><br>
 
 <table border="1" cellpadding="8">
@@ -58,6 +64,6 @@
 %>
 
 </table>
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>

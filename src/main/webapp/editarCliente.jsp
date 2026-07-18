@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.vinilsoft360.model.Cliente" %>
-
+<%@ include file="menu.jsp" %>
 <%
 Cliente cliente = (Cliente) request.getAttribute("cliente");
 %>
@@ -46,6 +46,6 @@ Cliente cliente = (Cliente) request.getAttribute("cliente");
 <br>
 
 <a href="listarClientes.jsp">Cancelar</a>
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>
