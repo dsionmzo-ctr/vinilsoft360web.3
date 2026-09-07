@@ -249,3 +249,29 @@ footer{
     background:#3876C7;
 
 }
+
+.barra-bienvenida {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0d3b66;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.barra-bienvenida a {
+    color: #ffffff;
+    background-color: #d9534f;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: background-color 0.2s;
+}
+
+.barra-bienvenida a:hover {
+    background-color: #c9302c;
+}

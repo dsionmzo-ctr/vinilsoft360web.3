@@ -17,27 +17,20 @@ import java.util.List;
  */
 public class ProductoDAO {
 
-    /**
-     * Método para registrar un nuevo producto en la base de datos.
-     *
-     * @param producto Objeto Producto con la información a registrar.
-     * @return true si el registro fue exitoso, false en caso contrario.
-     */
     public boolean agregarProducto(Producto producto) {
 
-        String sql = "INSERT INTO producto(nombre, tipo_piso, color, precio, stock) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto(nombre, categoria, descripcion, precio, stock, estado) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
-
             Connection con = Conexion.getConexion();
-
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setString(1, producto.getNombre());
-            ps.setString(2, producto.getTipoPiso());
-            ps.setString(3, producto.getColor());
+            ps.setString(2, producto.getCategoria());
+            ps.setString(3, producto.getDescripcion());
             ps.setDouble(4, producto.getPrecio());
             ps.setInt(5, producto.getStock());
+            ps.setString(6, producto.getEstado());
 
             ps.executeUpdate();
 
@@ -47,47 +40,33 @@ public class ProductoDAO {
             return true;
 
         } catch (SQLException e) {
-
             System.out.println("Error al registrar producto: " + e.getMessage());
-
             return false;
-
         }
-
     }
 
-    /**
-     * Método para consultar todos los productos registrados.
-     *
-     * @return Lista de productos.
-     */
     public List<Producto> listarProductos() {
 
         List<Producto> lista = new ArrayList<>();
-
         String sql = "SELECT * FROM producto";
 
         try {
-
             Connection con = Conexion.getConexion();
-
             PreparedStatement ps = con.prepareStatement(sql);
-
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-
                 Producto producto = new Producto();
 
-                producto.setId(rs.getInt("id"));
+                producto.setIdProducto(rs.getInt("id_producto"));
                 producto.setNombre(rs.getString("nombre"));
-                producto.setTipoPiso(rs.getString("tipo_piso"));
-                producto.setColor(rs.getString("color"));
+                producto.setCategoria(rs.getString("categoria"));
+                producto.setDescripcion(rs.getString("descripcion"));
                 producto.setPrecio(rs.getDouble("precio"));
                 producto.setStock(rs.getInt("stock"));
+                producto.setEstado(rs.getString("estado"));
 
                 lista.add(producto);
-
             }
 
             rs.close();
@@ -95,134 +74,94 @@ public class ProductoDAO {
             con.close();
 
         } catch (SQLException e) {
-
             System.out.println("Error al listar productos: " + e.getMessage());
-
         }
 
         return lista;
-
     }
-/**
- * Método que busca un producto por su identificador.
- *
- * @param id Identificador del producto.
- * @return Objeto Producto encontrado o null si no existe.
- */
-public Producto buscarPorId(int id) {
 
-    Producto producto = null;
+    public Producto buscarPorId(int id) {
 
-    String sql = "SELECT * FROM producto WHERE id=?";
+        Producto producto = null;
+        String sql = "SELECT * FROM producto WHERE id_producto=?";
 
-    try {
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
 
-        Connection con = Conexion.getConexion();
+            ResultSet rs = ps.executeQuery();
 
-        PreparedStatement ps = con.prepareStatement(sql);
+            if (rs.next()) {
+                producto = new Producto();
+                producto.setIdProducto(rs.getInt("id_producto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setCategoria(rs.getString("categoria"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getDouble("precio"));
+                producto.setStock(rs.getInt("stock"));
+                producto.setEstado(rs.getString("estado"));
+            }
 
-        ps.setInt(1, id);
+            rs.close();
+            ps.close();
+            con.close();
 
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-
-            producto = new Producto();
-
-            producto.setId(rs.getInt("id"));
-            producto.setNombre(rs.getString("nombre"));
-            producto.setTipoPiso(rs.getString("tipo_piso"));
-            producto.setColor(rs.getString("color"));
-            producto.setPrecio(rs.getDouble("precio"));
-            producto.setStock(rs.getInt("stock"));
-
+        } catch (SQLException e) {
+            System.out.println("Error al buscar producto: " + e.getMessage());
         }
 
-        rs.close();
-        ps.close();
-        con.close();
-
-    } catch (SQLException e) {
-
-        System.out.println("Error al buscar producto: " + e.getMessage());
-
+        return producto;
     }
 
-    return producto;
+    public boolean actualizarProducto(Producto producto) {
 
-}
-/**
- * Actualiza la información de un producto.
- *
- * @param producto Producto con la información actualizada.
- * @return true si la actualización fue exitosa.
- */
-public boolean actualizarProducto(Producto producto) {
+        String sql = "UPDATE producto SET nombre=?, categoria=?, descripcion=?, precio=?, stock=?, estado=? WHERE id_producto=?";
 
-    String sql = "UPDATE producto SET nombre=?, tipo_piso=?, color=?, precio=?, stock=? WHERE id=?";
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
 
-    try {
+            ps.setString(1, producto.getNombre());
+            ps.setString(2, producto.getCategoria());
+            ps.setString(3, producto.getDescripcion());
+            ps.setDouble(4, producto.getPrecio());
+            ps.setInt(5, producto.getStock());
+            ps.setString(6, producto.getEstado());
+            ps.setInt(7, producto.getIdProducto());
 
-        Connection con = Conexion.getConexion();
+            ps.executeUpdate();
 
-        PreparedStatement ps = con.prepareStatement(sql);
+            ps.close();
+            con.close();
 
-        ps.setString(1, producto.getNombre());
-        ps.setString(2, producto.getTipoPiso());
-        ps.setString(3, producto.getColor());
-        ps.setDouble(4, producto.getPrecio());
-        ps.setInt(5, producto.getStock());
-        ps.setInt(6, producto.getId());
+            return true;
 
-        ps.executeUpdate();
-
-        ps.close();
-        con.close();
-
-        return true;
-
-    } catch (SQLException e) {
-
-        System.out.println("Error al actualizar producto: " + e.getMessage());
-
-        return false;
-
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar producto: " + e.getMessage());
+            return false;
+        }
     }
 
-}
+    public boolean eliminarProducto(int id) {
 
-/**
- * Elimina un producto de la base de datos.
- *
- * @param id Identificador del producto.
- * @return true si la eliminación fue exitosa.
- */
-public boolean eliminarProducto(int id) {
+        String sql = "DELETE FROM producto WHERE id_producto=?";
 
-    String sql = "DELETE FROM producto WHERE id=?";
+        try {
+            Connection con = Conexion.getConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
 
-    try {
+            ps.executeUpdate();
 
-        Connection con = Conexion.getConexion();
+            ps.close();
+            con.close();
 
-        PreparedStatement ps = con.prepareStatement(sql);
+            return true;
 
-        ps.setInt(1, id);
-
-        ps.executeUpdate();
-
-        ps.close();
-        con.close();
-
-        return true;
-
-    } catch (SQLException e) {
-
-        System.out.println("Error al eliminar producto: " + e.getMessage());
-
-        return false;
-
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar producto: " + e.getMessage());
+            return false;
+        }
     }
-
-}
 }

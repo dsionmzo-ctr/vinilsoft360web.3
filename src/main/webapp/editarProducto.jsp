@@ -16,61 +16,34 @@
 
 <body>
 
-<!-- ====================================================== -->
-<!-- Formulario para actualizar un producto de Vinilsoft360 -->
-<!-- ====================================================== -->
-
 <h2>Editar Producto</h2>
 
-<!--
-    Este formulario envía la información actualizada
-    al ProductoServlet.
--->
 <form action="ProductoServlet" method="post">
 
-    <!-- Indica al servlet que se realizará una actualización -->
     <input type="hidden" name="accion" value="actualizar">
+    <input type="hidden" name="id" value="<%= producto.getIdProducto() %>">
 
-    <!-- Identificador del producto -->
-    <input type="hidden" name="id" value="<%= producto.getId()%>">
-
-    <!-- Nombre del producto -->
     <label>Nombre del producto:</label><br>
-    <input type="text"
-           name="nombre"
-           value="<%= producto.getNombre()%>"
-           required><br><br>
+    <input type="text" name="nombre" value="<%= producto.getNombre() %>" required><br><br>
 
-    <!-- Tipo de piso -->
-    <label>Tipo de piso:</label><br>
-    <input type="text"
-           name="tipoPiso"
-           value="<%= producto.getTipoPiso()%>"
-           required><br><br>
+    <label>Categoría:</label><br>
+    <input type="text" name="categoria" value="<%= producto.getCategoria() %>"><br><br>
 
-    <!-- Color -->
-    <label>Color:</label><br>
-    <input type="text"
-           name="color"
-           value="<%= producto.getColor()%>"
-           required><br><br>
+    <label>Descripción:</label><br>
+    <textarea name="descripcion" rows="3"><%= producto.getDescripcion() %></textarea><br><br>
 
-    <!-- Precio -->
     <label>Precio:</label><br>
-    <input type="number"
-           step="0.01"
-           name="precio"
-           value="<%= producto.getPrecio()%>"
-           required><br><br>
+    <input type="number" step="0.01" name="precio" value="<%= producto.getPrecio() %>" required><br><br>
 
-    <!-- Cantidad disponible -->
     <label>Stock:</label><br>
-    <input type="number"
-           name="stock"
-           value="<%= producto.getStock()%>"
-           required><br><br>
+    <input type="number" name="stock" value="<%= producto.getStock() %>" required><br><br>
 
-    <!-- Botón para actualizar -->
+    <label>Estado:</label><br>
+    <select name="estado">
+        <option value="Activo" <%= "Activo".equals(producto.getEstado()) ? "selected" : "" %>>Activo</option>
+        <option value="Inactivo" <%= "Inactivo".equals(producto.getEstado()) ? "selected" : "" %>>Inactivo</option>
+    </select><br><br>
+
     <input type="submit" value="Actualizar Producto">
 
 </form>
